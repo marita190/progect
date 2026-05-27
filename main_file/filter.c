@@ -3,6 +3,9 @@
 #include <math.h>
 #include <string.h>
 #include "filter.h"
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 static int check_filter(const Filter *pf, const char *func_name) {
     if (pf == NULL) {
@@ -32,8 +35,7 @@ double gaussian_noise(double mean, double sigma) {
         return mean + sigma * spare;
     }
     
-    //Преобразование Бокса-Мюллера
-
+    //преобразование Бокса-Мюллера
     double u1 = (double)rand() / RAND_MAX;
     double u2 = (double)rand() / RAND_MAX;
     
@@ -182,7 +184,7 @@ void resample(Filter *pf) {
         return;
     }
     
-    // кумулятивная сумма весов
+    //сумма весов
     double *cumulative = (double*)malloc(pf->N * sizeof(double));
     if (cumulative == NULL) {
         fprintf(stderr, "Ошибка resample(): не удалось выделить память для cumulative\n");
@@ -210,7 +212,7 @@ void resample(Filter *pf) {
         new_weights[i] = 1.0 / pf->N;
     }
     
-    // замена старых массивов новыми
+    //замена старых массивов новыми
     free(pf->particles);
     free(pf->weights);
     free(cumulative);

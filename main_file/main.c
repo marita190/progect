@@ -1,7 +1,7 @@
 //  Симулирует движение робота по коридору от 0 до 100 метров.
 //  Робот движется со скоростью ~1 м/с с шумом (проскальзывание колёс)
 //  Датчик даёт зашумлённые измерения.
-//  Фильтр частиц оценивает истинное положение робота.
+// Фильтр частиц оценивает истинное положение робота.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,14 +16,12 @@
 #define X_MIN           0.0     // Минимальное начальное положение
 #define X_MAX           100.0   // Максимальное начальное положение
 #define TIME_STEPS      50      // Количество шагов симуляции 
-#define RESAMPLE_THRESHOLD 0.5  //Порог ESS для ресемплирования (N/2)
+#define RESAMPLE_THRESHOLD 0.5  // Порог ESS для ресемплирования (N/2)
 
 static void print_table_header(void) {
     printf("\n");
-    printf("+------+--------+-----------+--------+----------+\n");
     printf("| Step | Truth  | Measured  | Filter | Error    |\n");
     printf("|      | (м)    | (м)       | (м)    | (м)      |\n");
-    printf("+------+--------+-----------+--------+----------+\n");
 }
 
 static void print_table_row(int step, double truth, double meas, 
@@ -66,7 +64,7 @@ int main(int argc, char *argv[]) {
 
     fprintf(output_file, "step,true_position,measurement,estimate\n");
 
-    double x_true = 0.0;                    //Истинное положение
+    double x_true = 0.0; //истинное положение
     double *errors = (double*)malloc(TIME_STEPS * sizeof(double));
     if (errors == NULL) {
         fprintf(stderr, "Ошибка: не удалось выделить память для errors\n");
@@ -85,13 +83,13 @@ int main(int argc, char *argv[]) {
         double measurement_noise = gaussian_noise(0.0, sqrt(R_MEASUREMENT));
         double z = x_true + measurement_noise;
         
-        /* ===== РАБОТА ФИЛЬТРА ===== */
+        // работа фильтра
         predict(pf, Q_PROCESS);                    //Предсказание
         update_weights(pf, z, R_MEASUREMENT);      //Обновление весов
         normalize_weights(pf);                      //Нормализация
         double estimate = estimate_position(pf);   //Оценка
         
-        // адаптивное ресемплирование по ESS
+        //ресемплирование по ESS
         double ess = compute_ess(pf);
         if (ess < N_PARTICLES * RESAMPLE_THRESHOLD) {
             resample(pf);

@@ -22,7 +22,7 @@ void test_pf_create() {
 
     pf_free(pf);
 
-    printf("✓ test_pf_create passed\n");
+    printf("test_pf_create passed\n");
 }
 
 void test_gaussian_noise() {
@@ -33,7 +33,7 @@ void test_gaussian_noise() {
         assert(!isinf(x));
     }
 
-    printf("✓ test_gaussian_noise passed\n");
+    printf("test_gaussian_noise passed\n");
 }
 
 void test_normalize_weights() {
@@ -55,7 +55,7 @@ void test_normalize_weights() {
 
     pf_free(pf);
 
-    printf("✓ test_normalize_weights passed\n");
+    printf("test_normalize_weights passed\n");
 }
 
 void test_estimate_position() {
@@ -73,7 +73,7 @@ void test_estimate_position() {
 
     pf_free(pf);
 
-    printf("✓ test_estimate_position passed\n");
+    printf("test_estimate_position passed\n");
 }
 
 void test_compute_ess() {
@@ -90,7 +90,7 @@ void test_compute_ess() {
 
     pf_free(pf);
 
-    printf("✓ test_compute_ess passed\n");
+    printf("test_compute_ess passed\n");
 }
 
 void test_predict() {
@@ -106,7 +106,7 @@ void test_predict() {
 
     pf_free(pf);
 
-    printf("✓ test_predict passed\n");
+    printf("test_predict passed\n");
 }
 
 void test_resample() {
@@ -127,7 +127,7 @@ void test_resample() {
 
     pf_free(pf);
 
-    printf("✓ test_resample passed\n");
+    printf("test_resample passed\n");
 }
 
 void test_is_filter_valid() {
@@ -137,12 +137,10 @@ void test_is_filter_valid() {
 
     pf_free(pf);
 
-    printf("✓ test_is_filter_valid passed\n");
+    printf("test_is_filter_valid passed\n");
 }
 int main() {
     srand(time(NULL));
-
-    printf("\nRunning tests...\n\n");
 
     test_pf_create();
     test_gaussian_noise();
