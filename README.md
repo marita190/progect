@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# progect
-=======
 # Particle Filter for Robot Localization
 ## Описание проекта
 Данный проект реализует фильтр частиц (Particle Filter) для оценки положения объекта, учитывая шумные измерения.
@@ -115,4 +112,4 @@ make tests
 4. сохраняет результаты в CSV-файл.
 
 <img width="1400" height="800" alt="график_фильтр_частиц" src="https://github.com/user-attachments/assets/ce75db39-620d-43bc-9826-ae14932869bb" />
->>>>>>> 7e819dd006f4d924fa4cb347b6a4517a4dcf8695
+
