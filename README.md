@@ -98,7 +98,9 @@ Make - это утилита, которая сама вызывает комп�
 
 ## Запуск программы 
 gcc -o main main.c filter.c -lm
+
 ./main
+
 python3 plot.py
 
 ## Запуск тестов
